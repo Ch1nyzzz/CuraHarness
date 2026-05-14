@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "curaharness"
+version = "0.1.0"
+description = "CuraHarness: online context curation for automated harness optimization."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "httpx>=0.27",
+  "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+external = [
+  "rank-bm25>=0.2.2",
+  "mem0ai>=0.1.0",
+]
+source = [
+  "rank-bm25>=0.2.2",
+  "fastembed>=0.3.1",
+  "qdrant-client>=1.12.0",
+  "pydantic>=2.7.3",
+  "openai>=1.90.0",
+  "posthog>=4.5.0",
+  "sqlalchemy>=2.0.31",
+  "protobuf>=5.29.6,<7.0.0",
+]
+dev = [
+  "pytest>=8.0",
+]
+[project.scripts]
+curaharness = "curaharness.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
